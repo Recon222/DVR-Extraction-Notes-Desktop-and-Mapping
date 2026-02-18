@@ -261,12 +261,10 @@ export const useMapTimelineStore = create<MapTimelineState & MapTimelineActions>
     }),
 
     selectLocation: (id) => set((state) => {
-      console.log('[Timeline] Selection changed:', { uuid: id });
       state.selectedLocationId = id;
     }),
 
     setFlyingToLocationId: (id) => set((state) => {
-      console.log('[Timeline] Flying to location:', { uuid: id });
       state.flyingToLocationId = id;
     }),
 
@@ -297,130 +295,66 @@ export const useMapTimelineStore = create<MapTimelineState & MapTimelineActions>
     setLightboxIndex: (index) => set((state) => { state.lightbox.currentIndex = index; }),
     setLightboxZoomGetter: (getter) => set((state) => { state.lightboxZoomGetter = getter; }),
     lightboxZoomIn: () => {
-      // Call the getter function to get the current zoom ref value
-      // The getter dereferences ref.current at call time, ensuring fresh callbacks
       const getter = useMapTimelineStore.getState().lightboxZoomGetter;
       const ref = getter?.();
-      if (ref) {
-        console.log('[MapTimelineStore] lightboxZoomIn called, zoom ref available');
-        ref.zoomIn();
-      } else {
-        console.warn('[MapTimelineStore] lightboxZoomIn called but zoom ref is null');
-      }
+      ref?.zoomIn();
     },
     lightboxZoomOut: () => {
-      // Call the getter function to get the current zoom ref value
-      // The getter dereferences ref.current at call time, ensuring fresh callbacks
       const getter = useMapTimelineStore.getState().lightboxZoomGetter;
       const ref = getter?.();
-      if (ref) {
-        console.log('[MapTimelineStore] lightboxZoomOut called, zoom ref available');
-        ref.zoomOut();
-      } else {
-        console.warn('[MapTimelineStore] lightboxZoomOut called but zoom ref is null');
-      }
+      ref?.zoomOut();
     },
 
     setMapZoomGetter: (getter) => set((state) => { state.mapZoomGetter = getter; }),
     mapZoomIn: (lat, lng) => {
       const getter = useMapTimelineStore.getState().mapZoomGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] mapZoomIn called, control available');
-        control.zoomIn(lat, lng);
-      } else {
-        console.warn('[MapTimelineStore] mapZoomIn called but map zoom control is null');
-      }
+      control?.zoomIn(lat, lng);
     },
     mapZoomOut: (lat, lng) => {
       const getter = useMapTimelineStore.getState().mapZoomGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] mapZoomOut called, control available');
-        control.zoomOut(lat, lng);
-      } else {
-        console.warn('[MapTimelineStore] mapZoomOut called but map zoom control is null');
-      }
+      control?.zoomOut(lat, lng);
     },
     mapPitchUp: () => {
       const getter = useMapTimelineStore.getState().mapZoomGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] mapPitchUp called, control available');
-        control.pitchUp();
-      } else {
-        console.warn('[MapTimelineStore] mapPitchUp called but map zoom control is null');
-      }
+      control?.pitchUp();
     },
     mapPitchDown: () => {
       const getter = useMapTimelineStore.getState().mapZoomGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] mapPitchDown called, control available');
-        control.pitchDown();
-      } else {
-        console.warn('[MapTimelineStore] mapPitchDown called but map zoom control is null');
-      }
+      control?.pitchDown();
     },
     mapBearingLeft: () => {
       const getter = useMapTimelineStore.getState().mapZoomGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] mapBearingLeft called, control available');
-        control.bearingLeft();
-      } else {
-        console.warn('[MapTimelineStore] mapBearingLeft called but map zoom control is null');
-      }
+      control?.bearingLeft();
     },
     mapBearingRight: () => {
       const getter = useMapTimelineStore.getState().mapZoomGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] mapBearingRight called, control available');
-        control.bearingRight();
-      } else {
-        console.warn('[MapTimelineStore] mapBearingRight called but map zoom control is null');
-      }
+      control?.bearingRight();
     },
     mapPanUp: () => {
       const getter = useMapTimelineStore.getState().mapZoomGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] mapPanUp called, control available');
-        control.panUp();
-      } else {
-        console.warn('[MapTimelineStore] mapPanUp called but map zoom control is null');
-      }
+      control?.panUp();
     },
     mapPanDown: () => {
       const getter = useMapTimelineStore.getState().mapZoomGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] mapPanDown called, control available');
-        control.panDown();
-      } else {
-        console.warn('[MapTimelineStore] mapPanDown called but map zoom control is null');
-      }
+      control?.panDown();
     },
     mapPanLeft: () => {
       const getter = useMapTimelineStore.getState().mapZoomGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] mapPanLeft called, control available');
-        control.panLeft();
-      } else {
-        console.warn('[MapTimelineStore] mapPanLeft called but map zoom control is null');
-      }
+      control?.panLeft();
     },
     mapPanRight: () => {
       const getter = useMapTimelineStore.getState().mapZoomGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] mapPanRight called, control available');
-        control.panRight();
-      } else {
-        console.warn('[MapTimelineStore] mapPanRight called but map zoom control is null');
-      }
+      control?.panRight();
     },
 
     openStreetView: (latitude, longitude, address, source) => {
@@ -437,124 +371,64 @@ export const useMapTimelineStore = create<MapTimelineState & MapTimelineActions>
     streetViewMoveForward: () => {
       const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] streetViewMoveForward called, control available');
-        control.moveForward();
-      } else {
-        console.warn('[MapTimelineStore] streetViewMoveForward called but panorama control is null');
-      }
+      control?.moveForward();
     },
     streetViewMoveBackward: () => {
       const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] streetViewMoveBackward called, control available');
-        control.moveBackward();
-      } else {
-        console.warn('[MapTimelineStore] streetViewMoveBackward called but panorama control is null');
-      }
+      control?.moveBackward();
     },
     streetViewMoveLeft: () => {
       const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] streetViewMoveLeft called, control available');
-        control.moveLeft();
-      } else {
-        console.warn('[MapTimelineStore] streetViewMoveLeft called but panorama control is null');
-      }
+      control?.moveLeft();
     },
     streetViewMoveRight: () => {
       const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] streetViewMoveRight called, control available');
-        control.moveRight();
-      } else {
-        console.warn('[MapTimelineStore] streetViewMoveRight called but panorama control is null');
-      }
+      control?.moveRight();
     },
     streetViewRotate: (degrees: number) => {
       const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] streetViewRotate called, degrees:', degrees);
-        control.rotate(degrees);
-      } else {
-        console.warn('[MapTimelineStore] streetViewRotate called but panorama control is null');
-      }
+      control?.rotate(degrees);
     },
     streetViewPitch: (degrees: number) => {
       const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] streetViewPitch called, degrees:', degrees);
-        control.pitch(degrees);
-      } else {
-        console.warn('[MapTimelineStore] streetViewPitch called but panorama control is null');
-      }
+      control?.pitch(degrees);
     },
     streetViewZoom: (direction: 'in' | 'out' | 'reset') => {
       const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] streetViewZoom called, direction:', direction);
-        control.zoom(direction);
-      } else {
-        console.warn('[MapTimelineStore] streetViewZoom called but panorama control is null');
-      }
+      control?.zoom(direction);
     },
 
     setLightboxVideoGetter: (getter) => set((state) => { state.lightboxVideoGetter = getter; }),
     videoPlay: () => {
       const getter = useMapTimelineStore.getState().lightboxVideoGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] videoPlay called');
-        control.play();
-      } else {
-        console.warn('[MapTimelineStore] videoPlay called but video control is null');
-      }
+      control?.play();
     },
     videoPause: () => {
       const getter = useMapTimelineStore.getState().lightboxVideoGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] videoPause called');
-        control.pause();
-      } else {
-        console.warn('[MapTimelineStore] videoPause called but video control is null');
-      }
+      control?.pause();
     },
     videoToggle: () => {
       const getter = useMapTimelineStore.getState().lightboxVideoGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] videoToggle called');
-        control.toggle();
-      } else {
-        console.warn('[MapTimelineStore] videoToggle called but video control is null');
-      }
+      control?.toggle();
     },
     videoSeek: (seconds: number) => {
       const getter = useMapTimelineStore.getState().lightboxVideoGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] videoSeek called, seconds:', seconds);
-        control.seek(seconds);
-      } else {
-        console.warn('[MapTimelineStore] videoSeek called but video control is null');
-      }
+      control?.seek(seconds);
     },
     videoFullscreen: () => {
       const getter = useMapTimelineStore.getState().lightboxVideoGetter;
       const control = getter?.();
-      if (control) {
-        console.log('[MapTimelineStore] videoFullscreen called');
-        control.toggleFullscreen();
-      } else {
-        console.warn('[MapTimelineStore] videoFullscreen called but video control is null');
-      }
+      control?.toggleFullscreen();
     },
 
     setSearchMarker: (latitude, longitude, address) => {
