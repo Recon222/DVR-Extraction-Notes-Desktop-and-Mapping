@@ -7,13 +7,13 @@
  */
 
 import { useEffect, useCallback, useRef } from 'react';
-import { invoke } from '@tauri-apps/api/tauri';
+import { invoke } from '@tauri-apps/api/core';
 import { listen } from '@tauri-apps/api/event';
-import { appWindow } from '@tauri-apps/api/window';
-import { useMapTimelineStore } from '@/features/mapTimeline/stores/mapTimelineStore';
+import { getCurrentWindow } from '@tauri-apps/api/window';
+import { useMapTimelineStore } from '@/features/mapTimeline/store/mapTimelineStore';
 import { useLocationStore } from '@/stores/useLocationStore';
 import { useAppMode } from '@/contexts/AppModeContext';
-import { FILE_SEPARATOR } from '@/config/filePaths';
+import { FILE_SEPARATOR } from '@/features/shared/config';
 import { useTouchPortalStore } from '../stores/useTouchPortalStore';
 import { TP_CONFIG } from '../constants/touchportalConfig';
 import type { TPCommand, TPStateUpdate, TPChoiceUpdate, RichLocationData } from '../types/touchportal.types';
@@ -274,8 +274,9 @@ export function useTouchPortalBridge(options: UseTouchPortalBridgeOptions = {}) 
       case 'toggle_fullscreen':
         (async () => {
           try {
-            const isFullscreen = await appWindow.isFullscreen();
-            await appWindow.setFullscreen(!isFullscreen);
+            const currentWindow = getCurrentWindow();
+            const isFullscreen = await currentWindow.isFullscreen();
+            await currentWindow.setFullscreen(!isFullscreen);
           } catch (error) {
             console.error('[TP] Failed to toggle fullscreen:', error);
           }

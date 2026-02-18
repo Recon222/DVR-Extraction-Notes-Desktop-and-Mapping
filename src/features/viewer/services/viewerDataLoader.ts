@@ -5,7 +5,7 @@
  * Transforms GeoJSON features into application state.
  */
 
-import { invoke } from '@tauri-apps/api/tauri';
+import { invoke } from '@tauri-apps/api/core';
 import type { ExportedCaseData } from '@/types/export.types';
 
 /**

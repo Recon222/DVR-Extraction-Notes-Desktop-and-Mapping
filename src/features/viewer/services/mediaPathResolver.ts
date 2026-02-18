@@ -5,7 +5,7 @@
  * Validates filenames to prevent path traversal attacks.
  */
 
-import { invoke } from '@tauri-apps/api/tauri';
+import { invoke } from '@tauri-apps/api/core';
 
 /**
  * Check if filename is safe (no path traversal)

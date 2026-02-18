@@ -8,11 +8,11 @@
  */
 
 import { createContext, useContext, type ReactNode } from 'react';
-import { convertFileSrc } from '@tauri-apps/api/tauri';
+import { convertFileSrc } from '@tauri-apps/api/core';
 import { useAppMode } from '@/contexts/AppModeContext';
 import { useCaseStore } from '@/stores/useCaseStore';
 import { useViewerStore } from '@/features/viewer/stores/useViewerStore';
-import { getImagesPath, getVideoPath } from '@/config/filePaths';
+import { getImagesPath, getVideoPath } from '@/features/shared/config';
 import { isSafeFilename } from '@/types/export.types';
 import { resolveImagePath, resolveVideoPath } from '@/features/viewer/services/mediaPathResolver';
 
