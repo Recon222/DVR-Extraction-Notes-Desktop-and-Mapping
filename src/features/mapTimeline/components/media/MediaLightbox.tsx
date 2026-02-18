@@ -2,7 +2,8 @@ import { useEffect, useState, useRef, lazy, Suspense, useCallback } from 'react'
 import type { SlideImage, SlideVideo, ZoomRef } from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/counter.css';
-import { convertFileSrc, invoke } from '@tauri-apps/api/tauri';
+import { convertFileSrc } from '@tauri-apps/api';
+import { readFileAsBase64, getStreamingMediaUrl, resolveMediaPath } from '../../services/mediaService';
 import { useAppMode } from '@/contexts/AppModeContext';
 import { useMapTimelineStore } from '../../stores/mapTimelineStore';
 import { useKeyboardContext } from '../../hooks/useKeyboardContext';
@@ -302,10 +303,7 @@ export const MediaLightbox = () => {
 
               if (slide.type === 'video') {
                 // VIDEOS: Use streaming URL (instant, no loading entire file)
-                const streamingUrl = await invoke<string>('get_streaming_media_url', {
-                  mediaType,
-                  filename,
-                });
+                const streamingUrl = await getStreamingMediaUrl(mediaType, filename);
 
                 // Check again after async operation
                 if (currentProcessingId !== processingIdRef.current) {
@@ -320,10 +318,7 @@ export const MediaLightbox = () => {
                 };
               } else {
                 // IMAGES: Use blob URL (images are small, no performance issue)
-                const mediaBytes = await invoke<number[]>('resolve_media_path', {
-                  mediaType,
-                  filename,
-                });
+                const mediaBytes = await resolveMediaPath(mediaType, filename);
 
                 // Check again after async operation
                 if (currentProcessingId !== processingIdRef.current) {
@@ -363,7 +358,7 @@ export const MediaLightbox = () => {
               // EDITOR MODE: Load from filesystem
               if (slide.type === 'image') {
                 // Validate data URL format to prevent XSS
-                const dataUrl = await invoke<string>('read_file_as_base64', { filePath: slide.src });
+                const dataUrl = await readFileAsBase64(slide.src);
 
                 // Check again after async operation
                 if (currentProcessingId !== processingIdRef.current) {

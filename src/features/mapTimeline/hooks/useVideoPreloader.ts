@@ -18,7 +18,7 @@ import { useEffect, useRef } from 'react';
 import { useMapTimelineStore } from '../stores/mapTimelineStore';
 import { useLocationStore } from '@/stores/useLocationStore';
 import { splitFileString } from '@/features/shared/config';
-import { invoke } from '@tauri-apps/api/tauri';
+import { getStreamingMediaUrl } from '../services/mediaService';
 import { useAppMode } from '@/contexts/AppModeContext';
 import { useDebounce } from '@/hooks/useDebounce';
 
@@ -61,10 +61,7 @@ export function useVideoPreloader() {
       const firstVideo = videoFiles[0];
 
       try {
-        const streamingUrl = await invoke<string>('get_streaming_media_url', {
-          mediaType: 'videos',
-          filename: firstVideo,
-        });
+        const streamingUrl = await getStreamingMediaUrl('videos', firstVideo);
 
         if (isCancelled) return;
 

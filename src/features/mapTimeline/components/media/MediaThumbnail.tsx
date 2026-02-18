@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { convertFileSrc } from '@tauri-apps/api/tauri';
-import { invoke } from '@tauri-apps/api/tauri';
+import { convertFileSrc } from '@tauri-apps/api';
+import { readFileAsBase64, getStreamingMediaUrl, resolveMediaPath } from '../../services/mediaService';
 import { useAppMode } from '@/contexts/AppModeContext';
 import { MAP_CONFIG } from '../../constants/mapConfig';
 
@@ -61,10 +61,7 @@ export const MediaThumbnail = ({ src, type, onClick, size = 'small', count }: Me
             console.log(`[MEDIA-DEBUG] MediaThumbnail: Getting streaming URL - filename="${filename}"`);
             const startTime = performance.now();
 
-            const streamingUrl = await invoke<string>('get_streaming_media_url', {
-              mediaType,
-              filename,
-            });
+            const streamingUrl = await getStreamingMediaUrl(mediaType, filename);
 
             const elapsed = performance.now() - startTime;
             console.log(`[MEDIA-DEBUG] MediaThumbnail: Streaming URL obtained - filename="${filename}", url="${streamingUrl}", time=${elapsed.toFixed(2)}ms`);
@@ -79,10 +76,7 @@ export const MediaThumbnail = ({ src, type, onClick, size = 'small', count }: Me
             console.log(`[MEDIA-DEBUG] MediaThumbnail: Calling resolve_media_path - type="${mediaType}", filename="${filename}"`);
             const startTime = performance.now();
 
-            const mediaBytes = await invoke<number[]>('resolve_media_path', {
-              mediaType,
-              filename,
-            });
+            const mediaBytes = await resolveMediaPath(mediaType, filename);
 
             const elapsed = performance.now() - startTime;
             const sizeKB = (mediaBytes.length / 1024).toFixed(2);
@@ -136,7 +130,7 @@ export const MediaThumbnail = ({ src, type, onClick, size = 'small', count }: Me
             console.log(`[MEDIA-DEBUG] MediaThumbnail: Loading image from filesystem - path="${src}"`);
 
             // For images: Load as base64 Data URL
-            const dataUrl = await invoke<string>('read_file_as_base64', { filePath: src });
+            const dataUrl = await readFileAsBase64(src);
 
             if (!mountedRef.current) return;
 

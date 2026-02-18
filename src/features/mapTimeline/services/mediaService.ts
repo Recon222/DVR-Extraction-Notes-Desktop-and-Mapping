@@ -1,8 +1,8 @@
 /**
  * Media Service Layer - Plain Exported Async Functions
  *
- * STUB: This file defines the service interface for media-related Tauri commands.
- * Implementation will replace the raw invoke() calls currently in:
+ * Wraps media-related Tauri commands for the mapTimeline feature.
+ * Used by:
  * - components/media/MediaLightbox.tsx
  * - components/media/MediaThumbnail.tsx
  * - hooks/useVideoPreloader.ts
@@ -13,7 +13,7 @@
  * @see services/exampleService.ts for the canonical pattern
  */
 
-// TODO: Implement - currently stubs for TDD RED phase
+import { commands } from '@/lib/tauri-bindings'
 
 /**
  * Read a local file and return its contents as a base64-encoded data URL.
@@ -23,8 +23,10 @@
  * @returns Base64-encoded data URL string (e.g., "data:image/jpeg;base64,...")
  * @throws Error if the command fails or file cannot be read
  */
-export async function readFileAsBase64(_filePath: string): Promise<string> {
-  throw new Error('Not implemented')
+export async function readFileAsBase64(filePath: string): Promise<string> {
+  const result = await commands.readFileAsBase64(filePath)
+  if (result.status === 'error') throw new Error(result.error as string)
+  return result.data
 }
 
 /**
@@ -37,10 +39,12 @@ export async function readFileAsBase64(_filePath: string): Promise<string> {
  * @throws Error if the command fails or media cannot be found
  */
 export async function getStreamingMediaUrl(
-  _mediaType: string,
-  _filename: string,
+  mediaType: string,
+  filename: string,
 ): Promise<string> {
-  throw new Error('Not implemented')
+  const result = await commands.getStreamingMediaUrl(mediaType, filename)
+  if (result.status === 'error') throw new Error(result.error as string)
+  return result.data
 }
 
 /**
@@ -53,8 +57,10 @@ export async function getStreamingMediaUrl(
  * @throws Error if the command fails or media cannot be found
  */
 export async function resolveMediaPath(
-  _mediaType: string,
-  _filename: string,
+  mediaType: string,
+  filename: string,
 ): Promise<number[]> {
-  throw new Error('Not implemented')
+  const result = await commands.resolveMediaPath(mediaType, filename)
+  if (result.status === 'error') throw new Error(result.error as string)
+  return result.data
 }
