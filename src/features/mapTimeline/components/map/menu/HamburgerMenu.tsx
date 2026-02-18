@@ -5,7 +5,7 @@
  * Contains menu items and handles animation.
  */
 
-import { Z_INDEX } from '@config/zIndex';
+import { Z_INDEX } from '@/features/shared/config';
 
 interface HamburgerMenuProps {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-import { splitFileString, getImagesPath, getVideoPath, PATH_SEP } from '@config/filePaths';
+import { splitFileString, getImagesPath, getVideoPath, PATH_SEP } from '@/features/shared/config';
 import type { CCTVLocation } from '@/types/cctv.types';
 import type { LightboxSlide } from '../types';
 

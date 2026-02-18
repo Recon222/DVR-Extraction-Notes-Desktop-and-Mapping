@@ -9,7 +9,7 @@
 import { createPortal } from 'react-dom';
 import { PegmanIcon } from './PegmanIcon';
 import { ANIMATION_TIMING, EASING } from '../../constants/animations';
-import { Z_INDEX } from '@config/zIndex';
+import { Z_INDEX } from '@/features/shared/config';
 import { usePortalTarget } from '../../hooks/usePortalTarget';
 
 interface PegmanDraggableProps {

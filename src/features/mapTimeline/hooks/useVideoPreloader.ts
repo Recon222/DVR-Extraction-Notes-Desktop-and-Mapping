@@ -17,7 +17,7 @@
 import { useEffect, useRef } from 'react';
 import { useMapTimelineStore } from '../stores/mapTimelineStore';
 import { useLocationStore } from '@/stores/useLocationStore';
-import { splitFileString } from '@/config/filePaths';
+import { splitFileString } from '@/features/shared/config';
 import { invoke } from '@tauri-apps/api/tauri';
 import { useAppMode } from '@/contexts/AppModeContext';
 import { useDebounce } from '@/hooks/useDebounce';

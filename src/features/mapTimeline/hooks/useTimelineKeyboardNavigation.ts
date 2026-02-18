@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useMapTimelineStore } from '../stores/mapTimelineStore';
 import { HOTKEYS } from '../constants/hotkeys';
-import { isTypingInFormField } from '@utils/keyboardHelpers';
+import { isTypingInFormField } from '@/features/shared/utils';
 import type { TimelineEvent } from '../types';
 import type { CCTVLocation } from '@/types/cctv.types';
 

@@ -26,7 +26,7 @@ import { useStreetViewPanorama } from '../../hooks/useStreetViewPanorama';
 import { useKeyboardContext } from '../../hooks/useKeyboardContext';
 import { StreetViewPOVButton } from '@/components/streetview/StreetViewPOVButton';
 import { GOOGLE_MAPS_CONFIG } from '../../constants/mapConfig';
-import { Z_INDEX } from '@config/zIndex';
+import { Z_INDEX } from '@/features/shared/config';
 import { useFullscreen, isFullscreenSupported } from '../../hooks/useFullscreen';
 import { DOM_IDS } from '../../constants/domIds';
 import { useIsViewerMode } from '@/contexts/AppModeContext';

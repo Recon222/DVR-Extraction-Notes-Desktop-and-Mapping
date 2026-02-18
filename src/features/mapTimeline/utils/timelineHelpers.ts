@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns';
 import type { CCTVLocation } from '@/types/cctv.types';
 import type { TimelineEvent, MarkerData } from '../types';
-import { splitFileString } from '@config/filePaths';
+import { splitFileString } from '@/features/shared/config';
 
 /**
  * Sort locations by real date/time in ascending order

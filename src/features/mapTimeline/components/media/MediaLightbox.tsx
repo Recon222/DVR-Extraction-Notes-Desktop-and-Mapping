@@ -9,7 +9,7 @@ import { useKeyboardContext } from '../../hooks/useKeyboardContext';
 import { useFullscreen } from '../../hooks/useFullscreen';
 import { DOM_IDS } from '../../constants/domIds';
 import { HOTKEYS } from '../../constants/hotkeys';
-import { Z_INDEX } from '@config/zIndex';
+import { Z_INDEX } from '@/features/shared/config';
 import { VIDEO_PLAYBACK } from '@config/mediaConfig';
 
 // Lazy load the main lightbox component

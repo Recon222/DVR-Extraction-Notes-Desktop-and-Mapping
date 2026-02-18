@@ -13,7 +13,7 @@ import { getCachedStreetViewAvailability } from '../../services/streetViewServic
 import { getLocationPOV } from '../../services/geojsonService';
 import { MAP_CONFIG } from '../../constants/mapConfig';
 import { HOTKEYS } from '../../constants/hotkeys';
-import { isTypingInFormField } from '@utils/keyboardHelpers';
+import { isTypingInFormField } from '@/features/shared/utils';
 import { useDevicePixelRatio } from '../../hooks/useDevicePixelRatio';
 import { useMapTimelineStore } from '../../stores/mapTimelineStore';
 import { useIsViewerMode, useAppMode } from '@/contexts/AppModeContext';

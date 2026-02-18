@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useKeyboardContext } from '../hooks/useKeyboardContext';
 import { HOTKEYS } from '../constants/hotkeys';
-import { Z_INDEX } from '@config/zIndex';
+import { Z_INDEX } from '@/features/shared/config';
 
 interface HelpPanelProps {
   isOpen: boolean;
