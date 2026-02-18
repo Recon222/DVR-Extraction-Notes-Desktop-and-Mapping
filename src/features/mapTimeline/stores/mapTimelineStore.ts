@@ -248,6 +248,18 @@ const getInitialState = (): MapTimelineState => ({
   viewport: { longitude: -79.7624, latitude: 43.7315, zoom: 13 }
 });
 
+/**
+ * Resolve the control object from a getter stored in state.
+ * Used by proxy actions to avoid repeating the getter lookup pattern.
+ *
+ * @param getterKey - The state key holding the getter function
+ * @returns The control object, or undefined if getter is null or returns null
+ */
+function getControl<T>(getterKey: keyof MapTimelineState): T | undefined {
+  const getter = useMapTimelineStore.getState()[getterKey] as (() => T | null) | null;
+  return getter?.() ?? undefined;
+}
+
 export const useMapTimelineStore = create<MapTimelineState & MapTimelineActions>()(
   immer((set) => ({
     ...getInitialState(),
@@ -294,68 +306,24 @@ export const useMapTimelineStore = create<MapTimelineState & MapTimelineActions>
     },
     setLightboxIndex: (index) => set((state) => { state.lightbox.currentIndex = index; }),
     setLightboxZoomGetter: (getter) => set((state) => { state.lightboxZoomGetter = getter; }),
-    lightboxZoomIn: () => {
-      const getter = useMapTimelineStore.getState().lightboxZoomGetter;
-      const ref = getter?.();
-      ref?.zoomIn();
-    },
-    lightboxZoomOut: () => {
-      const getter = useMapTimelineStore.getState().lightboxZoomGetter;
-      const ref = getter?.();
-      ref?.zoomOut();
-    },
+
+    // Lightbox zoom proxy actions
+    lightboxZoomIn: () => { getControl<LightboxZoomRef>('lightboxZoomGetter')?.zoomIn(); },
+    lightboxZoomOut: () => { getControl<LightboxZoomRef>('lightboxZoomGetter')?.zoomOut(); },
 
     setMapZoomGetter: (getter) => set((state) => { state.mapZoomGetter = getter; }),
-    mapZoomIn: (lat, lng) => {
-      const getter = useMapTimelineStore.getState().mapZoomGetter;
-      const control = getter?.();
-      control?.zoomIn(lat, lng);
-    },
-    mapZoomOut: (lat, lng) => {
-      const getter = useMapTimelineStore.getState().mapZoomGetter;
-      const control = getter?.();
-      control?.zoomOut(lat, lng);
-    },
-    mapPitchUp: () => {
-      const getter = useMapTimelineStore.getState().mapZoomGetter;
-      const control = getter?.();
-      control?.pitchUp();
-    },
-    mapPitchDown: () => {
-      const getter = useMapTimelineStore.getState().mapZoomGetter;
-      const control = getter?.();
-      control?.pitchDown();
-    },
-    mapBearingLeft: () => {
-      const getter = useMapTimelineStore.getState().mapZoomGetter;
-      const control = getter?.();
-      control?.bearingLeft();
-    },
-    mapBearingRight: () => {
-      const getter = useMapTimelineStore.getState().mapZoomGetter;
-      const control = getter?.();
-      control?.bearingRight();
-    },
-    mapPanUp: () => {
-      const getter = useMapTimelineStore.getState().mapZoomGetter;
-      const control = getter?.();
-      control?.panUp();
-    },
-    mapPanDown: () => {
-      const getter = useMapTimelineStore.getState().mapZoomGetter;
-      const control = getter?.();
-      control?.panDown();
-    },
-    mapPanLeft: () => {
-      const getter = useMapTimelineStore.getState().mapZoomGetter;
-      const control = getter?.();
-      control?.panLeft();
-    },
-    mapPanRight: () => {
-      const getter = useMapTimelineStore.getState().mapZoomGetter;
-      const control = getter?.();
-      control?.panRight();
-    },
+
+    // Map control proxy actions
+    mapZoomIn: (lat, lng) => { getControl<MapZoomControl>('mapZoomGetter')?.zoomIn(lat, lng); },
+    mapZoomOut: (lat, lng) => { getControl<MapZoomControl>('mapZoomGetter')?.zoomOut(lat, lng); },
+    mapPitchUp: () => { getControl<MapZoomControl>('mapZoomGetter')?.pitchUp(); },
+    mapPitchDown: () => { getControl<MapZoomControl>('mapZoomGetter')?.pitchDown(); },
+    mapBearingLeft: () => { getControl<MapZoomControl>('mapZoomGetter')?.bearingLeft(); },
+    mapBearingRight: () => { getControl<MapZoomControl>('mapZoomGetter')?.bearingRight(); },
+    mapPanUp: () => { getControl<MapZoomControl>('mapZoomGetter')?.panUp(); },
+    mapPanDown: () => { getControl<MapZoomControl>('mapZoomGetter')?.panDown(); },
+    mapPanLeft: () => { getControl<MapZoomControl>('mapZoomGetter')?.panLeft(); },
+    mapPanRight: () => { getControl<MapZoomControl>('mapZoomGetter')?.panRight(); },
 
     openStreetView: (latitude, longitude, address, source) => {
       set((state) => {
@@ -368,68 +336,24 @@ export const useMapTimelineStore = create<MapTimelineState & MapTimelineActions>
       });
     },
     setStreetViewPanoramaGetter: (getter) => set((state) => { state.streetViewPanoramaGetter = getter; }),
-    streetViewMoveForward: () => {
-      const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
-      const control = getter?.();
-      control?.moveForward();
-    },
-    streetViewMoveBackward: () => {
-      const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
-      const control = getter?.();
-      control?.moveBackward();
-    },
-    streetViewMoveLeft: () => {
-      const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
-      const control = getter?.();
-      control?.moveLeft();
-    },
-    streetViewMoveRight: () => {
-      const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
-      const control = getter?.();
-      control?.moveRight();
-    },
-    streetViewRotate: (degrees: number) => {
-      const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
-      const control = getter?.();
-      control?.rotate(degrees);
-    },
-    streetViewPitch: (degrees: number) => {
-      const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
-      const control = getter?.();
-      control?.pitch(degrees);
-    },
-    streetViewZoom: (direction: 'in' | 'out' | 'reset') => {
-      const getter = useMapTimelineStore.getState().streetViewPanoramaGetter;
-      const control = getter?.();
-      control?.zoom(direction);
-    },
+
+    // Street View panorama proxy actions
+    streetViewMoveForward: () => { getControl<StreetViewPanoramaControl>('streetViewPanoramaGetter')?.moveForward(); },
+    streetViewMoveBackward: () => { getControl<StreetViewPanoramaControl>('streetViewPanoramaGetter')?.moveBackward(); },
+    streetViewMoveLeft: () => { getControl<StreetViewPanoramaControl>('streetViewPanoramaGetter')?.moveLeft(); },
+    streetViewMoveRight: () => { getControl<StreetViewPanoramaControl>('streetViewPanoramaGetter')?.moveRight(); },
+    streetViewRotate: (degrees: number) => { getControl<StreetViewPanoramaControl>('streetViewPanoramaGetter')?.rotate(degrees); },
+    streetViewPitch: (degrees: number) => { getControl<StreetViewPanoramaControl>('streetViewPanoramaGetter')?.pitch(degrees); },
+    streetViewZoom: (direction: 'in' | 'out' | 'reset') => { getControl<StreetViewPanoramaControl>('streetViewPanoramaGetter')?.zoom(direction); },
 
     setLightboxVideoGetter: (getter) => set((state) => { state.lightboxVideoGetter = getter; }),
-    videoPlay: () => {
-      const getter = useMapTimelineStore.getState().lightboxVideoGetter;
-      const control = getter?.();
-      control?.play();
-    },
-    videoPause: () => {
-      const getter = useMapTimelineStore.getState().lightboxVideoGetter;
-      const control = getter?.();
-      control?.pause();
-    },
-    videoToggle: () => {
-      const getter = useMapTimelineStore.getState().lightboxVideoGetter;
-      const control = getter?.();
-      control?.toggle();
-    },
-    videoSeek: (seconds: number) => {
-      const getter = useMapTimelineStore.getState().lightboxVideoGetter;
-      const control = getter?.();
-      control?.seek(seconds);
-    },
-    videoFullscreen: () => {
-      const getter = useMapTimelineStore.getState().lightboxVideoGetter;
-      const control = getter?.();
-      control?.toggleFullscreen();
-    },
+
+    // Lightbox video proxy actions
+    videoPlay: () => { getControl<LightboxVideoControl>('lightboxVideoGetter')?.play(); },
+    videoPause: () => { getControl<LightboxVideoControl>('lightboxVideoGetter')?.pause(); },
+    videoToggle: () => { getControl<LightboxVideoControl>('lightboxVideoGetter')?.toggle(); },
+    videoSeek: (seconds: number) => { getControl<LightboxVideoControl>('lightboxVideoGetter')?.seek(seconds); },
+    videoFullscreen: () => { getControl<LightboxVideoControl>('lightboxVideoGetter')?.toggleFullscreen(); },
 
     setSearchMarker: (latitude, longitude, address) => {
       set((state) => {
