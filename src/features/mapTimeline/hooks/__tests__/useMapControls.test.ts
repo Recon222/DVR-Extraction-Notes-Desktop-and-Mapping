@@ -4,10 +4,10 @@ import { useMapControls } from '../useMapControls';
 import { useMapTimelineStore } from '../../stores/mapTimelineStore';
 import type { MapRef } from 'react-map-gl/mapbox';
 import type { CCTVLocation } from '@/types/cctv.types';
-import * as geojsonService from '@/services/geojsonService';
+import * as geojsonService from '../../services/geojsonService';
 
 // Mock the geojsonService
-vi.mock('@/services/geojsonService', () => ({
+vi.mock('../../services/geojsonService', () => ({
   getLocationPOV: vi.fn(),
 }));
 

@@ -10,7 +10,7 @@ import { ClearPOVButton } from '@/components/pov/ClearPOVButton';
 import { formatDateTime } from '../../utils/timelineHelpers';
 import { getMediaCounts, getMediaSlidesByType } from '../../utils/mediaHelpers';
 import { getCachedStreetViewAvailability } from '../../services/streetViewService';
-import { getLocationPOV } from '@/services/geojsonService';
+import { getLocationPOV } from '../../services/geojsonService';
 import { MAP_CONFIG } from '../../constants/mapConfig';
 import { HOTKEYS } from '../../constants/hotkeys';
 import { isTypingInFormField } from '@utils/keyboardHelpers';

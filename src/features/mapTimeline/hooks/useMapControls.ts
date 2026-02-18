@@ -3,7 +3,7 @@ import type { MapRef } from 'react-map-gl/mapbox';
 import { useMapTimelineStore } from '../stores/mapTimelineStore';
 import { MAP_CONFIG, validateZoomLevel } from '../constants/mapConfig';
 import type { CCTVLocation } from '@/types/cctv.types';
-import { getLocationPOV } from '@/services/geojsonService';
+import { getLocationPOV } from '../services/geojsonService';
 import { useAppMode } from '@/contexts/AppModeContext';
 
 export function useMapControls(mapRef: RefObject<MapRef>, caseDir: string) {

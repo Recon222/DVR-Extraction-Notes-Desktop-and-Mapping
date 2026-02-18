@@ -5,10 +5,10 @@ import { useMapTimelineStore } from '../stores/mapTimelineStore';
 import { transformLocationsToEvents, transformToMarkerData, sortLocationsByTime } from '../utils/timelineHelpers';
 import type { CCTVLocation } from '@/types/cctv.types';
 import type { MapRef } from 'react-map-gl/mapbox';
-import * as geojsonService from '@/services/geojsonService';
+import * as geojsonService from '../services/geojsonService';
 
 // Mock the geojsonService
-vi.mock('@/services/geojsonService', () => ({
+vi.mock('../services/geojsonService', () => ({
   getLocationPOV: vi.fn(),
 }));
 
