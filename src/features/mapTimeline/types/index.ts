@@ -5,7 +5,7 @@
  */
 
 import type { CCTVLocation } from '@/types/cctv.types';
-import type { StreetViewPOV } from '@/types/geojson.types';
+import type { StreetViewPOV } from './geojson';
 
 // Timeline Event Types
 export interface TimelineEvent {
@@ -64,7 +64,7 @@ export interface StreetViewModalProps {
   // Optional POV editing props - only provided when opened from location popup
   locationUuid?: string;
   caseDir?: string;
-  existingPOV?: any | null;
+  existingPOV?: StreetViewPOV | null;
   onPOVSaved?: () => void;  // Callback to refresh POV data after save
 }
 

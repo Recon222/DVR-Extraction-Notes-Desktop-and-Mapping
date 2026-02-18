@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, lazy, Suspense, useCallback } from 'react';
-import type { SlideImage, SlideVideo, ZoomRef } from 'yet-another-react-lightbox';
+import type { SlideImage, SlideVideo, ZoomRef, Plugin } from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/counter.css';
 import { convertFileSrc } from '@tauri-apps/api';
@@ -18,9 +18,6 @@ import { VIDEO_PLAYBACK } from '@config/mediaConfig';
 const LightboxComponent = lazy(() => import('yet-another-react-lightbox'));
 
 type LightboxSlide = SlideImage | SlideVideo;
-
-// Plugin type from yet-another-react-lightbox
-type Plugin = any;
 
 // Fallback component while lightbox is loading
 const LightboxFallback = () => (

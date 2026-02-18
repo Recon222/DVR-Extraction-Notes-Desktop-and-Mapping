@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Popup } from 'react-map-gl/mapbox';
 import type { MapRef } from 'react-map-gl/mapbox';
 import type { CCTVLocation } from '@/types/cctv.types';
+import type { MapboxPOV, StreetViewPOV } from '../../types/geojson';
 import { MediaGrid } from '../media/MediaGrid';
 import { StreetViewThumbnail } from '../streetview/StreetViewThumbnail';
 import { StreetViewModal } from '../streetview/StreetViewModal';
@@ -28,7 +29,7 @@ interface LocationPopupProps {
 export const LocationPopup = ({ location, caseDir, onClose, mapRef }: LocationPopupProps) => {
   const [activeTab, setActiveTab] = useState<'images' | 'videos' | 'streetview'>('images');
   const [streetViewAvailable, setStreetViewAvailable] = useState<boolean | null>(null);
-  const [povData, setPovData] = useState<{ mapboxPOV: any; streetViewPOV: any } | null>(null);
+  const [povData, setPovData] = useState<{ mapboxPOV: MapboxPOV | null; streetViewPOV: StreetViewPOV | null } | null>(null);
   const [loadingPOV, setLoadingPOV] = useState(true);
   const [isStreetViewModalOpen, setIsStreetViewModalOpen] = useState(false);
   const { dprClass, isDPI2x } = useDevicePixelRatio();
