@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { convertFileSrc } from '@tauri-apps/api';
+import { convertFileSrc } from '@tauri-apps/api/core';
 import { readFileAsBase64, getStreamingMediaUrl, resolveMediaPath } from '../../services/mediaService';
 import { useAppMode } from '@/contexts/AppModeContext';
 import { MAP_CONFIG } from '../../constants/mapConfig';
