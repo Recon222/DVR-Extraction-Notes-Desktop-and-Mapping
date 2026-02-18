@@ -18,7 +18,9 @@ import type { TimelineFilters } from '../types';
  * @returns Filtered events, markers, and unfiltered events for dropdown options
  */
 export function useMapTimeline(locations: CCTVLocation[], filters: TimelineFilters | null) {
-  const { revealedCount, selectedLocationId, currentIndex } = useMapTimelineStore();
+  const revealedCount = useMapTimelineStore(state => state.revealedCount);
+  const selectedLocationId = useMapTimelineStore(state => state.selectedLocationId);
+  const currentIndex = useMapTimelineStore(state => state.currentIndex);
 
   // Memoize sorted locations to prevent unnecessary sorting
   // This is expensive with large datasets, so we cache it

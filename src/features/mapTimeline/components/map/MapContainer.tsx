@@ -20,7 +20,11 @@ interface MapContainerProps {
 
 export const MapContainer = forwardRef<MapRef, MapContainerProps>(
   ({ markers, locations, caseDir, onMarkerClick, onHelpOpen }, ref) => {
-    const { viewport, setViewport, selectedLocationId, selectLocation, searchMarker, setFlyingToLocationId } = useMapTimelineStore();
+    const viewport = useMapTimelineStore(state => state.viewport);
+    const selectedLocationId = useMapTimelineStore(state => state.selectedLocationId);
+    const searchMarker = useMapTimelineStore(state => state.searchMarker);
+    const setViewport = useMapTimelineStore(state => state.setViewport);
+    const setFlyingToLocationId = useMapTimelineStore(state => state.setFlyingToLocationId);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [isMapReady, setIsMapReady] = useState(false);
 
@@ -131,7 +135,7 @@ export const MapContainer = forwardRef<MapRef, MapContainerProps>(
             <LocationPopup
               location={selectedLocation}
               caseDir={caseDir}
-              onClose={() => selectLocation(null)}
+              onClose={() => useMapTimelineStore.getState().selectLocation(null)}
               mapRef={ref as React.RefObject<MapRef>}
             />
           )}

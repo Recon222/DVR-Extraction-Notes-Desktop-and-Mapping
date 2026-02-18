@@ -32,7 +32,7 @@ export const LocationPopup = ({ location, caseDir, onClose, mapRef }: LocationPo
   const [loadingPOV, setLoadingPOV] = useState(true);
   const [isStreetViewModalOpen, setIsStreetViewModalOpen] = useState(false);
   const { dprClass, isDPI2x } = useDevicePixelRatio();
-  const { openLightbox, openStreetView, closeStreetView } = useMapTimelineStore();
+  // Actions accessed via getState() in handlers to avoid subscribing to entire store
   const isViewerMode = useIsViewerMode();
   const { exportData } = useAppMode();
 
@@ -110,7 +110,7 @@ export const LocationPopup = ({ location, caseDir, onClose, mapRef }: LocationPo
   const handleOpenStreetView = () => {
     setIsStreetViewModalOpen(true);
     // Also update store so timeline keyboard navigation is disabled
-    openStreetView(location.latitude, location.longitude, location.address, 'popup');
+    useMapTimelineStore.getState().openStreetView(location.latitude, location.longitude, location.address, 'popup');
   };
 
   /**
@@ -120,7 +120,7 @@ export const LocationPopup = ({ location, caseDir, onClose, mapRef }: LocationPo
   const handleCloseStreetView = () => {
     setIsStreetViewModalOpen(false);
     // Also update store to re-enable timeline keyboard navigation
-    closeStreetView();
+    useMapTimelineStore.getState().closeStreetView();
   };
 
   /**
@@ -143,6 +143,8 @@ export const LocationPopup = ({ location, caseDir, onClose, mapRef }: LocationPo
       if (isTypingInFormField(e)) {
         return;
       }
+
+      const { openLightbox } = useMapTimelineStore.getState();
 
       // Quick access: Ctrl+I - Open images in lightbox
       if (e.ctrlKey && e.key.toLowerCase() === 'i') {
@@ -217,7 +219,7 @@ export const LocationPopup = ({ location, caseDir, onClose, mapRef }: LocationPo
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [activeTab, availableTabs, mediaCounts, location, caseDir, streetViewAvailable, onClose, openLightbox]);
+  }, [activeTab, availableTabs, mediaCounts, location, caseDir, streetViewAvailable, onClose]);
 
   /**
    * Check Street View availability for this location

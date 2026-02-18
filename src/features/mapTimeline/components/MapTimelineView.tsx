@@ -46,8 +46,14 @@ export const MapTimelineView = () => {
   // Help panel state
   const [helpPanelOpen, setHelpPanelOpen] = useState(false);
 
-  // Get state from Zustand store
-  const { filters, filtersOpen, lightbox, streetView, setFilters, setFiltersOpen, setMapZoomGetter } = useMapTimelineStore();
+  // Get state from Zustand store (selector pattern prevents render cascades)
+  const filters = useMapTimelineStore(state => state.filters);
+  const filtersOpen = useMapTimelineStore(state => state.filtersOpen);
+  const lightbox = useMapTimelineStore(state => state.lightbox);
+  const streetView = useMapTimelineStore(state => state.streetView);
+  const setFilters = useMapTimelineStore(state => state.setFilters);
+  const setFiltersOpen = useMapTimelineStore(state => state.setFiltersOpen);
+  const setMapZoomGetter = useMapTimelineStore(state => state.setMapZoomGetter);
 
   // Main data hook - now receives filters and applies them before creating markers
   const { events, markers, dateRange, unfilteredEvents } = useMapTimeline(locations, filters);

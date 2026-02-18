@@ -53,7 +53,9 @@ import { useEffect } from 'react';
 import { useKeyboardManager, type KeyboardContext } from '../stores/keyboardManager';
 
 export function useKeyboardContext(context: KeyboardContext, enabled = true) {
-  const { setActiveContext, removeContext, isActiveContext } = useKeyboardManager();
+  const setActiveContext = useKeyboardManager(state => state.setActiveContext);
+  const removeContext = useKeyboardManager(state => state.removeContext);
+  const isActiveContext = useKeyboardManager(state => state.isActiveContext);
 
   useEffect(() => {
     if (!enabled) {

@@ -10,7 +10,6 @@ interface MediaGridProps {
 }
 
 export const MediaGrid = ({ location, caseDir, mediaType }: MediaGridProps) => {
-  const { openLightbox } = useMapTimelineStore();
   const thumbnails = getThumbnails(location, caseDir, mediaType === 'images' ? 'image' : 'video');
 
   const handleThumbnailClick = () => {
@@ -18,7 +17,7 @@ export const MediaGrid = ({ location, caseDir, mediaType }: MediaGridProps) => {
     const slides = getMediaSlidesByType(location, caseDir, mediaType);
 
     // Open lightbox at the first item (index 0) since we're only showing one type
-    openLightbox(slides, 0);
+    useMapTimelineStore.getState().openLightbox(slides, 0);
   };
 
   if (thumbnails.length === 0) {

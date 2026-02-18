@@ -7,13 +7,13 @@ import { getLocationPOV } from '../services/geojsonService';
 import { useAppMode } from '@/contexts/AppModeContext';
 
 export function useMapControls(mapRef: RefObject<MapRef>, caseDir: string) {
-  const { selectLocation, revealUpTo, setCurrentIndex, setFlyingToLocationId } = useMapTimelineStore();
   const { exportData } = useAppMode();
 
   const flyToLocation = useCallback(async (location: CCTVLocation) => {
     if (!mapRef.current) return;
 
     // NEW: Set flyingToLocationId BEFORE animation starts (for preloader timing)
+    const { setFlyingToLocationId } = useMapTimelineStore.getState();
     setFlyingToLocationId(location.uuid);
 
     try {
@@ -71,10 +71,12 @@ export function useMapControls(mapRef: RefObject<MapRef>, caseDir: string) {
         essential: true
       });
     }
-  }, [mapRef, caseDir, setFlyingToLocationId, exportData]);
+  }, [mapRef, caseDir, exportData]);
 
   const handleEventClick = useCallback((locationId: string, eventIndex: number, location: CCTVLocation) => {  // CHANGED: string
     console.log('[Timeline] Event clicked:', { uuid: locationId, address: location.address, index: eventIndex });
+
+    const { revealUpTo, setCurrentIndex, selectLocation } = useMapTimelineStore.getState();
 
     // Reveal all markers up to this one
     revealUpTo(eventIndex);
@@ -87,14 +89,15 @@ export function useMapControls(mapRef: RefObject<MapRef>, caseDir: string) {
 
     // Fly to location (now POV-aware, sets flyingToLocationId internally)
     flyToLocation(location);
-  }, [revealUpTo, setCurrentIndex, selectLocation, flyToLocation]);
+  }, [flyToLocation]);
 
   const handleMarkerClick = useCallback((locationId: string) => {  // CHANGED: string
     console.log('[Timeline] Marker clicked:', { uuid: locationId });
 
     // Just select the location to show popup - no fly-to, no reveal change
+    const { selectLocation } = useMapTimelineStore.getState();
     selectLocation(locationId);  // Now passes UUID
-  }, [selectLocation]);
+  }, []);
 
   return {
     flyToLocation,

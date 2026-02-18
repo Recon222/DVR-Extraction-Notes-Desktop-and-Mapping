@@ -24,7 +24,7 @@ export const PegmanControl = ({ mapRef, isMapReady = false }: PegmanControlProps
   const [isReturning, setIsReturning] = useState(false);
   const [returnPosition, setReturnPosition] = useState<{ x: number; y: number } | null>(null);
 
-  const { openStreetView, closeStreetView, streetView } = useMapTimelineStore();
+  const streetView = useMapTimelineStore(state => state.streetView);
 
   const {
     isDragging,
@@ -73,12 +73,12 @@ export const PegmanControl = ({ mapRef, isMapReady = false }: PegmanControlProps
 
     if (coords) {
       // Valid drop on map - open Street View (from pegman)
-      openStreetView(coords.lat, coords.lng, `${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)}`, 'pegman');
+      useMapTimelineStore.getState().openStreetView(coords.lat, coords.lng, `${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)}`, 'pegman');
     } else {
       // Invalid drop (outside map or error) - animate return
       handleReturnAnimation();
     }
-  }, [handleDragEnd, handleReturnAnimation, openStreetView]);
+  }, [handleDragEnd, handleReturnAnimation]);
 
   /**
    * Handle cancel (ESC key) - animate return to button
@@ -149,7 +149,7 @@ export const PegmanControl = ({ mapRef, isMapReady = false }: PegmanControlProps
           latitude={streetView.latitude}
           longitude={streetView.longitude}
           address={streetView.address}
-          onClose={closeStreetView}
+          onClose={() => useMapTimelineStore.getState().closeStreetView()}
         />
       )}
     </>

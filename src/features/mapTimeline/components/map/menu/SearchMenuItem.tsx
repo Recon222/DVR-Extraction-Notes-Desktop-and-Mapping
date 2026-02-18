@@ -20,7 +20,7 @@ interface SearchMenuItemProps {
 
 export const SearchMenuItem = ({ mapRef, onClose }: SearchMenuItemProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { setSearchMarker, clearSearchMarker } = useMapTimelineStore();
+  // Actions accessed via getState() in handlers below
 
   const handleLocationSelect = (result: SearchBoxRetrieveResponse) => {
     const feature = result.features[0];
@@ -35,6 +35,7 @@ export const SearchMenuItem = ({ mapRef, onClose }: SearchMenuItemProps) => {
     const address = addressParts.slice(0, 2).join(', ') || 'Search Result';
 
     // Clear previous search marker
+    const { clearSearchMarker, setSearchMarker } = useMapTimelineStore.getState();
     clearSearchMarker();
 
     // Set new search marker

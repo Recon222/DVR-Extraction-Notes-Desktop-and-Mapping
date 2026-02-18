@@ -8,7 +8,11 @@ export function useTimelinePlayback(
   locations: CCTVLocation[],
   onAdvance: (locationId: string, index: number, location: CCTVLocation) => void  // CHANGED: string
 ) {
-  const { isPlaying, currentIndex, pausePlayback, stepForward, revealUpTo } = useMapTimelineStore();
+  const isPlaying = useMapTimelineStore(state => state.isPlaying);
+  const currentIndex = useMapTimelineStore(state => state.currentIndex);
+  const pausePlayback = useMapTimelineStore(state => state.pausePlayback);
+  const stepForward = useMapTimelineStore(state => state.stepForward);
+  const revealUpTo = useMapTimelineStore(state => state.revealUpTo);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Sort locations outside effect to avoid re-sorting on every interval

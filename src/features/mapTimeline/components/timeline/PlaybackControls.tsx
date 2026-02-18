@@ -21,16 +21,9 @@ export const PlaybackControls = ({
   totalUnfilteredCount = 0,
   onToggleFilters
 }: PlaybackControlsProps) => {
-  const {
-    currentIndex,
-    isPlaying,
-    startPlayback,
-    pausePlayback,
-    stepForward,
-    stepBackward,
-    revealUpTo,
-    revealedCount
-  } = useMapTimelineStore();
+  const currentIndex = useMapTimelineStore(state => state.currentIndex);
+  const isPlaying = useMapTimelineStore(state => state.isPlaying);
+  const revealedCount = useMapTimelineStore(state => state.revealedCount);
 
   const canGoBack = currentIndex > 0;
   const canGoForward = currentIndex < totalEvents - 1;
@@ -45,6 +38,7 @@ export const PlaybackControls = ({
       return;
     }
 
+    const { stepBackward, revealUpTo } = useMapTimelineStore.getState();
     stepBackward();
     revealUpTo(newIndex);
 
@@ -67,6 +61,7 @@ export const PlaybackControls = ({
       return;
     }
 
+    const { stepForward, revealUpTo } = useMapTimelineStore.getState();
     stepForward();
     revealUpTo(newIndex);
 
@@ -140,7 +135,7 @@ export const PlaybackControls = ({
 
           {!isPlaying ? (
             <button
-              onClick={startPlayback}
+              onClick={() => useMapTimelineStore.getState().startPlayback()}
               disabled={!canGoForward}
               className="p-1.5 @sm/timeline:p-2 rounded-md bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-blue-600 dark:disabled:hover:bg-blue-700 transition-colors"
               aria-label="Start playback"
@@ -150,7 +145,7 @@ export const PlaybackControls = ({
             </button>
           ) : (
             <button
-              onClick={pausePlayback}
+              onClick={() => useMapTimelineStore.getState().pausePlayback()}
               className="p-1.5 @sm/timeline:p-2 rounded-md bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white transition-colors"
               aria-label="Pause playback"
               title="Pause playback (Space or Esc)"

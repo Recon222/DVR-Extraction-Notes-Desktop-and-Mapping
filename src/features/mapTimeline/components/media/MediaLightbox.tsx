@@ -107,7 +107,11 @@ function getImageDimensions(src: string): Promise<{ width: number; height: numbe
 
 export const MediaLightbox = () => {
   const { mode } = useAppMode();
-  const { lightbox, closeLightbox, setLightboxIndex, setLightboxZoomGetter, setLightboxVideoGetter } = useMapTimelineStore();
+  const lightbox = useMapTimelineStore(state => state.lightbox);
+  const closeLightbox = useMapTimelineStore(state => state.closeLightbox);
+  const setLightboxIndex = useMapTimelineStore(state => state.setLightboxIndex);
+  const setLightboxZoomGetter = useMapTimelineStore(state => state.setLightboxZoomGetter);
+  const setLightboxVideoGetter = useMapTimelineStore(state => state.setLightboxVideoGetter);
   const [processedSlides, setProcessedSlides] = useState<LightboxSlide[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [plugins, setPlugins] = useState<Plugin[]>([]);

@@ -30,7 +30,9 @@ export function useTimelineKeyboardNavigation({
   onEventClick,
   isEnabled
 }: UseTimelineKeyboardNavigationParams) {
-  const { currentIndex, isPlaying, pausePlayback } = useMapTimelineStore();
+  const currentIndex = useMapTimelineStore(state => state.currentIndex);
+  const isPlaying = useMapTimelineStore(state => state.isPlaying);
+  const pausePlayback = useMapTimelineStore(state => state.pausePlayback);
 
   useEffect(() => {
     // Don't register handler if disabled

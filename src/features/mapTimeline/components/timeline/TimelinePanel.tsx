@@ -30,8 +30,10 @@ export const TimelinePanel = ({
   onFiltersOpenChange,
   onEventClick
 }: TimelinePanelProps) => {
-  const { isPanelCollapsed, panelPosition, setPanelPosition, togglePanel, selectedLocationId } = useMapTimelineStore();
-  const mapTimelineStore = useMapTimelineStore();
+  const isPanelCollapsed = useMapTimelineStore(state => state.isPanelCollapsed);
+  const panelPosition = useMapTimelineStore(state => state.panelPosition);
+  const selectedLocationId = useMapTimelineStore(state => state.selectedLocationId);
+  const togglePanel = useMapTimelineStore(state => state.togglePanel);
 
   // Local UI state for showing/hiding filter panel
   const [showFilters, setShowFilters] = useState(false);
@@ -80,8 +82,9 @@ export const TimelinePanel = ({
 
   const handleToggleFilters = () => {
     // Auto-pause playback when opening filters
-    if (mapTimelineStore.isPlaying) {
-      mapTimelineStore.pausePlayback();
+    const { isPlaying, pausePlayback } = useMapTimelineStore.getState();
+    if (isPlaying) {
+      pausePlayback();
     }
     setShowFilters(true);
   };
@@ -91,10 +94,11 @@ export const TimelinePanel = ({
     setShowFilters(false);
 
     // Reset playback state to start of filtered events
-    mapTimelineStore.setCurrentIndex(0);
-    mapTimelineStore.revealUpTo(-1); // Hide all markers initially
-    mapTimelineStore.selectLocation(null);
-    mapTimelineStore.pausePlayback();
+    const { setCurrentIndex, revealUpTo, selectLocation, pausePlayback } = useMapTimelineStore.getState();
+    setCurrentIndex(0);
+    revealUpTo(-1); // Hide all markers initially
+    selectLocation(null);
+    pausePlayback();
   };
 
   const handleClearFilters = () => {
@@ -102,10 +106,11 @@ export const TimelinePanel = ({
     setShowFilters(false);
 
     // Reset playback state
-    mapTimelineStore.setCurrentIndex(0);
-    mapTimelineStore.revealUpTo(-1);
-    mapTimelineStore.selectLocation(null);
-    mapTimelineStore.pausePlayback();
+    const { setCurrentIndex, revealUpTo, selectLocation, pausePlayback } = useMapTimelineStore.getState();
+    setCurrentIndex(0);
+    revealUpTo(-1);
+    selectLocation(null);
+    pausePlayback();
   };
 
   const handleCancelFilters = () => {
@@ -122,7 +127,7 @@ export const TimelinePanel = ({
       maxHeight={window.innerHeight - MAP_CONFIG.panelMaxHeightOffset}
       bounds="parent"
       dragHandleClassName="timeline-drag-handle"
-      onDragStop={(_, d) => setPanelPosition(d.x, d.y)}
+      onDragStop={(_, d) => useMapTimelineStore.getState().setPanelPosition(d.x, d.y)}
       enableResizing={!isPanelCollapsed}
       className="z-50"
       aria-label="Timeline panel - draggable and resizable"
