@@ -16,14 +16,14 @@ export const TimelineEventCard = forwardRef<HTMLDivElement, TimelineEventCardPro
       <div ref={ref}>
         <button
           onClick={onClick}
-          className={`w-full text-left p-4 rounded-lg border-l-4 transition-all hover:shadow-md
+          className={`w-full text-start p-4 rounded-lg border-s-4 transition-all hover:shadow-md
             focus:outline-none
             ${
               isActive
                 ? 'bg-blue-50 dark:bg-blue-900/30 shadow-md'
                 : 'bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700'
             }`}
-          style={{ borderLeftColor: isActive ? color : undefined }}
+          style={{ borderInlineStartColor: isActive ? color : undefined }}
           tabIndex={0}
           aria-label={`CCTV event at ${displayTime} - ${location.address}${hasImages ? `, ${event.imageCount} images` : ''}${hasVideos ? `, ${event.videoCount} videos` : ''}`}
           aria-pressed={isActive}

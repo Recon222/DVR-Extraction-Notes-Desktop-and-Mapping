@@ -351,7 +351,7 @@ export const LocationPopup = ({ location, caseDir, onClose, mapRef }: LocationPo
           {/* Close button - positioned inside the popup bounds */}
           <button
             onClick={onClose}
-            className="absolute top-2 right-2 z-10 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 text-gray-600 hover:text-gray-800 transition-colors shadow-sm"
+            className="absolute top-2 end-2 z-10 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 text-gray-600 hover:text-gray-800 transition-colors shadow-sm"
             aria-label="Close popup"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -361,7 +361,7 @@ export const LocationPopup = ({ location, caseDir, onClose, mapRef }: LocationPo
 
           {/* Tabs - show if has both media OR has Street View */}
           {showTabs && (
-            <div className="flex border-b border-gray-200 pr-8" role="tablist" aria-label="Media tabs">
+            <div className="flex border-b border-gray-200 pe-8" role="tablist" aria-label="Media tabs">
               {mediaCounts.images > 0 && (
                 <button
                   onClick={() => setActiveTab('images')}
@@ -471,7 +471,7 @@ export const LocationPopup = ({ location, caseDir, onClose, mapRef }: LocationPo
 
             {/* Notes */}
             {location.notes && (
-              <div className="border-l-4 border-blue-500 pl-3 py-2 bg-gray-50 rounded-r">
+              <div className="border-s-4 border-blue-500 ps-3 py-2 bg-gray-50 rounded-e">
                 <p className={`${isDPI2x ? 'text-xs' : 'text-sm'} text-gray-700`}>
                   {location.notes}
                 </p>

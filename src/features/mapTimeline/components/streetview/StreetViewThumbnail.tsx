@@ -110,7 +110,7 @@ export const StreetViewThumbnail = ({
 
       {/* Double-click Hint */}
       {doubleClickHint && !loading && !error && (
-        <div className="absolute bottom-2 left-2 right-2 bg-black bg-opacity-70 text-white text-xs py-1.5 px-2 rounded text-center animate-fade-in">
+        <div className="absolute bottom-2 start-2 end-2 bg-black bg-opacity-70 text-white text-xs py-1.5 px-2 rounded text-center animate-fade-in">
           Double-click to expand
         </div>
       )}

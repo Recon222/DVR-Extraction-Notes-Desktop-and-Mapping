@@ -356,7 +356,7 @@ export const StreetViewModal = ({
       >
         {/* Header Bar (hidden in fullscreen) */}
         {!isFullscreen && (
-          <div className="absolute top-0 left-0 right-0 bg-white bg-opacity-95 shadow-md z-10 px-4 py-3 flex items-center justify-between">
+          <div className="absolute top-0 start-0 end-0 bg-white bg-opacity-95 shadow-md z-10 px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <svg
                 className="w-5 h-5 text-blue-600"
@@ -428,7 +428,7 @@ export const StreetViewModal = ({
         {isFullscreen && (
           <button
             onClick={toggleFullscreen}
-            className="absolute top-4 right-4 z-10 p-3 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-lg shadow-lg transition-all text-gray-700"
+            className="absolute top-4 end-4 z-10 p-3 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-lg shadow-lg transition-all text-gray-700"
             title="Exit fullscreen (Ctrl+A)"
             aria-label="Exit fullscreen"
           >
@@ -450,7 +450,7 @@ export const StreetViewModal = ({
 
         {/* POV Button - HIDDEN IN VIEWER MODE */}
         {!loading && !error && showPOVButton && (
-          <div className="absolute bottom-4 left-4 z-10">
+          <div className="absolute bottom-4 start-4 z-10">
             <StreetViewPOVButton
               locationUuid={locationUuid!}
               caseDir={caseDir!}

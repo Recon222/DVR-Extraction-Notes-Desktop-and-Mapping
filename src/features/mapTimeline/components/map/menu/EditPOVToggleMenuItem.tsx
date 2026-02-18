@@ -13,7 +13,7 @@ export const EditPOVToggleMenuItem = () => {
   return (
     <button
       onClick={toggleEditMode}
-      className="w-full flex items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+      className="w-full flex items-center justify-between gap-3 px-4 py-3 text-start text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
       role="menuitemcheckbox"
       aria-checked={isEditMode}
       type="button"

@@ -54,7 +54,7 @@ export class MapErrorBoundary extends Component<Props, State> {
             <p className="text-gray-600 dark:text-gray-400 mb-4">
               There was an error loading the map timeline. This could be due to:
             </p>
-            <ul className="text-left text-sm text-gray-600 dark:text-gray-400 mb-6 space-y-2">
+            <ul className="text-start text-sm text-gray-600 dark:text-gray-400 mb-6 space-y-2">
               <li>• Missing or invalid Mapbox API key</li>
               <li>• Network connectivity issues</li>
               <li>• Invalid location coordinates</li>

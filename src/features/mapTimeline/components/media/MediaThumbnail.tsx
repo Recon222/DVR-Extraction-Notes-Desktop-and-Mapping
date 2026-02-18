@@ -321,7 +321,7 @@ export const MediaThumbnail = ({ src, type, onClick, size = 'small', count }: Me
             <div className="relative w-16 h-16 rounded-full bg-white shadow-2xl flex items-center justify-center transform transition-all duration-200 group-hover:scale-110 group-hover:shadow-3xl">
               {/* Play icon - proper triangle pointing right */}
               <svg
-                className="w-7 h-7 text-gray-900 ml-1"
+                className="w-7 h-7 text-gray-900 ms-1"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -334,7 +334,7 @@ export const MediaThumbnail = ({ src, type, onClick, size = 'small', count }: Me
 
       {/* Count badge - show if count exists and > 1 */}
       {count && count > 1 && loaded && (
-        <div className="absolute top-2 right-2 w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold shadow-lg">
+        <div className="absolute top-2 end-2 w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold shadow-lg">
           {count}
         </div>
       )}
