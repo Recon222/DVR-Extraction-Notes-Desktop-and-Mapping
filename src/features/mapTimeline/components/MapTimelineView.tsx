@@ -16,7 +16,7 @@ import { useMapControls } from '../hooks/useMapControls';
 import { useTimelinePlayback } from '../hooks/useTimelinePlayback';
 import { useTimelineKeyboardNavigation } from '../hooks/useTimelineKeyboardNavigation';
 import { useVideoPreloader } from '../hooks/useVideoPreloader';
-import { useMapTimelineStore } from '../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../store/mapTimelineStore';
 import { useKeyboardContext } from '../hooks/useKeyboardContext';
 import { useTouchPortalBridge } from '@/features/viewer/touchportal';
 import { DOM_IDS } from '../constants/domIds';

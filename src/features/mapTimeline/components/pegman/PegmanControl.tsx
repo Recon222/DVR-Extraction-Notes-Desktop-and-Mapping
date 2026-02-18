@@ -12,7 +12,7 @@ import { PegmanDraggable } from './PegmanDraggable';
 import { usePegmanDrag } from './usePegmanDrag';
 import { useHighlightLayer } from './useHighlightLayer';
 import { StreetViewModal } from '../streetview/StreetViewModal';
-import { useMapTimelineStore } from '../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../store/mapTimelineStore';
 import { ANIMATION_TIMING } from '../../constants/animations';
 
 interface PegmanControlProps {

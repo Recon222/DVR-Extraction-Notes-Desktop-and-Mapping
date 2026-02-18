@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Rnd } from 'react-rnd';
-import { useMapTimelineStore } from '../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../store/mapTimelineStore';
 import { TimelineHeader } from './TimelineHeader';
 import { TimelineEventCard } from './TimelineEventCard';
 import { PlaybackControls } from './PlaybackControls';

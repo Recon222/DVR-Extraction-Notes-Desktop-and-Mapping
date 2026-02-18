@@ -1,5 +1,5 @@
 import { useEffect, useRef, useMemo } from 'react';
-import { useMapTimelineStore } from '../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../store/mapTimelineStore';
 import { MAP_CONFIG } from '../constants/mapConfig';
 import { HOTKEYS } from '../constants/hotkeys';
 import type { CCTVLocation } from '@/types/cctv.types';

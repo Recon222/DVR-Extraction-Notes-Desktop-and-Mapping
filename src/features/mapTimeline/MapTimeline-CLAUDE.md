@@ -58,7 +58,7 @@ MapTimelineView.tsx              # Main orchestrator
 
 ### State Management
 
-**Zustand Store** (`stores/mapTimelineStore.ts`):
+**Zustand Store** (`store/mapTimelineStore.ts`):
 
 | State | Purpose |
 |-------|---------|
@@ -71,7 +71,7 @@ MapTimelineView.tsx              # Main orchestrator
 | `streetView` | Street View modal state |
 | `viewport` | Map center + zoom |
 
-**Keyboard Manager** (`stores/keyboardManager.ts`):
+**Keyboard Manager** (`store/keyboardManager.ts`):
 
 Priority-based event gating prevents shortcut conflicts between overlays.
 
@@ -276,8 +276,8 @@ VITE_GOOGLE_MAPS_API_KEY=your_google_maps_key
 | File | Purpose |
 |------|---------|
 | `components/MapTimelineView.tsx` | Main orchestrator |
-| `stores/mapTimelineStore.ts` | Zustand store |
-| `stores/keyboardManager.ts` | Keyboard priority system |
+| `store/mapTimelineStore.ts` | Zustand store |
+| `store/keyboardManager.ts` | Keyboard priority system |
 | `hooks/useMapTimeline.ts` | Data transformation |
 | `hooks/useMapControls.ts` | Map interactions |
 | `hooks/useTimelinePlayback.ts` | Auto-playback |

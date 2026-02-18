@@ -16,7 +16,7 @@ import { MAP_CONFIG } from '../../constants/mapConfig';
 import { HOTKEYS } from '../../constants/hotkeys';
 import { isTypingInFormField } from '@/features/shared/utils';
 import { useDevicePixelRatio } from '../../hooks/useDevicePixelRatio';
-import { useMapTimelineStore } from '../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../store/mapTimelineStore';
 import { useIsViewerMode, useAppMode } from '@/contexts/AppModeContext';
 
 interface LocationPopupProps {

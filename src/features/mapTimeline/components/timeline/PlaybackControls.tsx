@@ -1,5 +1,5 @@
 import { PlayIcon, PauseIcon } from '@heroicons/react/24/solid';
-import { useMapTimelineStore } from '../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../store/mapTimelineStore';
 import type { TimelineEvent } from '../../types';
 
 interface PlaybackControlsProps {

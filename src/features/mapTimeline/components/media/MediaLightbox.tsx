@@ -5,7 +5,7 @@ import 'yet-another-react-lightbox/plugins/counter.css';
 import { convertFileSrc } from '@tauri-apps/api';
 import { readFileAsBase64, getStreamingMediaUrl, resolveMediaPath } from '../../services/mediaService';
 import { useAppMode } from '@/contexts/AppModeContext';
-import { useMapTimelineStore } from '../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../store/mapTimelineStore';
 import { useKeyboardContext } from '../../hooks/useKeyboardContext';
 import { useFullscreen } from '../../hooks/useFullscreen';
 import { DOM_IDS } from '../../constants/domIds';

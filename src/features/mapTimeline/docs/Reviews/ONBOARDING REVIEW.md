@@ -214,7 +214,7 @@ Good accessibility practices found:
 
 ### [HIGH] Store is Excessively Large (587 Lines, 43 State + 43 Actions)
 
-File: `stores/mapTimelineStore.ts`
+File: `store/mapTimelineStore.ts`
 
 The store defines 43 state fields and 43 action methods in a single file. This is a "god store" anti-pattern. Recommended split:
 
@@ -376,7 +376,7 @@ No tests found for:
 - `components/media/MediaThumbnail.tsx` — Loading states, retry logic, blob URL cleanup
 - `hooks/useFullscreen.ts` — Fullscreen state management
 - `hooks/useKeyboardContext.ts` — Context registration/cleanup lifecycle
-- `stores/keyboardManager.ts` — Priority-based context system
+- `store/keyboardManager.ts` — Priority-based context system
 
 ---
 
@@ -494,7 +494,7 @@ Good validation found throughout:
 | `constants/mapConfig.ts`, `constants/hotkeys.ts`, `constants/domIds.ts`, `constants/animations.ts` | Pure configuration constants |
 | `utils/timelineHelpers.ts`, `utils/filterHelpers.ts`, `utils/mediaHelpers.ts` | Pure utility functions, well-tested |
 | `services/googleMapsLoader.ts`, `services/streetViewService.ts` | Standalone services with no Tauri dependency |
-| `stores/keyboardManager.ts` | Independent Zustand store, clean design |
+| `store/keyboardManager.ts` | Independent Zustand store, clean design |
 | `components/icons/index.tsx` | Reusable SVG icon components |
 | `components/MapErrorBoundary.tsx` | Standard error boundary |
 | All `__tests__/` files | Tests will work after dependency install and minor mock updates |

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useTimelineKeyboardNavigation } from '../useTimelineKeyboardNavigation';
-import { useMapTimelineStore } from '../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../store/mapTimelineStore';
 import type { TimelineEvent } from '../../types';
 import type { CCTVLocation } from '@/types/cctv.types';
 

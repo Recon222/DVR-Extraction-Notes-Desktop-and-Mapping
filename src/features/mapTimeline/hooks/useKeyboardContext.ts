@@ -50,7 +50,7 @@
  */
 
 import { useEffect } from 'react';
-import { useKeyboardManager, type KeyboardContext } from '../stores/keyboardManager';
+import { useKeyboardManager, type KeyboardContext } from '../store/keyboardManager';
 
 export function useKeyboardContext(context: KeyboardContext, enabled = true) {
   const setActiveContext = useKeyboardManager(state => state.setActiveContext);

@@ -1,5 +1,5 @@
 export { MapTimelineView } from './components/MapTimelineView';
-export { useMapTimelineStore } from './stores/mapTimelineStore';
+export { useMapTimelineStore } from './store/mapTimelineStore';
 export type { TimelineEvent, MarkerData, LightboxSlide, MapViewport, StreetViewModalProps, StreetViewThumbnailProps, PegmanState, PegmanControlProps } from './types';
 export { MAP_CONFIG, GOOGLE_MAPS_CONFIG } from './constants/mapConfig';
 

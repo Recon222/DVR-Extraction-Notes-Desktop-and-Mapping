@@ -30,7 +30,7 @@ import { Z_INDEX } from '@/features/shared/config';
 import { useFullscreen, isFullscreenSupported } from '../../hooks/useFullscreen';
 import { DOM_IDS } from '../../constants/domIds';
 import { useIsViewerMode } from '@/contexts/AppModeContext';
-import { useMapTimelineStore } from '../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../store/mapTimelineStore';
 import type { StreetViewModalProps } from '../../types';
 
 /**

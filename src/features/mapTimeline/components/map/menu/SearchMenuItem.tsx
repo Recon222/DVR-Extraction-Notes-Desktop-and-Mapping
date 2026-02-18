@@ -11,7 +11,7 @@ import { SearchBox } from '@mapbox/search-js-react';
 import type { SearchBoxRetrieveResponse } from '@mapbox/search-js-core';
 import type { MapRef } from 'react-map-gl/mapbox';
 import { MenuItem } from './MenuItem';
-import { useMapTimelineStore } from '../../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../../store/mapTimelineStore';
 
 interface SearchMenuItemProps {
   mapRef: React.RefObject<MapRef>;

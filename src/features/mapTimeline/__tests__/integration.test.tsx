@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { useMapControls } from '../hooks/useMapControls';
-import { useMapTimelineStore } from '../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../store/mapTimelineStore';
 import { transformLocationsToEvents, transformToMarkerData, sortLocationsByTime } from '../utils/timelineHelpers';
 import type { CCTVLocation } from '@/types/cctv.types';
 import type { MapRef } from 'react-map-gl/mapbox';

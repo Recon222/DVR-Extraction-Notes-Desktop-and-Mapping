@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useMapTimelineStore } from '../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../store/mapTimelineStore';
 import { HOTKEYS } from '../constants/hotkeys';
 import { isTypingInFormField } from '@/features/shared/utils';
 import type { TimelineEvent } from '../types';

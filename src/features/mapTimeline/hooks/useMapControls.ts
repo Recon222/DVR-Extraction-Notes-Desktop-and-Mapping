@@ -1,6 +1,6 @@
 import { useCallback, RefObject } from 'react';
 import type { MapRef } from 'react-map-gl/mapbox';
-import { useMapTimelineStore } from '../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../store/mapTimelineStore';
 import { MAP_CONFIG, validateZoomLevel } from '../constants/mapConfig';
 import type { CCTVLocation } from '@/types/cctv.types';
 import { getLocationPOV } from '../services/geojsonService';

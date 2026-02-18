@@ -1,6 +1,6 @@
 import { MediaThumbnail } from './MediaThumbnail';
 import { getThumbnails, getMediaSlidesByType } from '../../utils/mediaHelpers';
-import { useMapTimelineStore } from '../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../store/mapTimelineStore';
 import type { CCTVLocation } from '@/types/cctv.types';
 
 interface MediaGridProps {

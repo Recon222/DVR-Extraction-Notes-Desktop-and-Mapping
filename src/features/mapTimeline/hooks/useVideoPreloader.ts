@@ -15,7 +15,7 @@
  */
 
 import { useEffect, useRef } from 'react';
-import { useMapTimelineStore } from '../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../store/mapTimelineStore';
 import { useLocationStore } from '@/stores/useLocationStore';
 import { splitFileString } from '@/features/shared/config';
 import { getStreamingMediaUrl } from '../services/mediaService';

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useMapControls } from '../useMapControls';
-import { useMapTimelineStore } from '../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../store/mapTimelineStore';
 import type { MapRef } from 'react-map-gl/mapbox';
 import type { CCTVLocation } from '@/types/cctv.types';
 import * as geojsonService from '../../services/geojsonService';

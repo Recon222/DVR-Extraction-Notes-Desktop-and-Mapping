@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useEffect, useState } from 'react';
 import Map, { MapRef, NavigationControl } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { useMapTimelineStore } from '../../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../../store/mapTimelineStore';
 import { TimelineMarker } from './TimelineMarker';
 import { SearchMarker } from './SearchMarker';
 import { LocationPopup } from './LocationPopup';

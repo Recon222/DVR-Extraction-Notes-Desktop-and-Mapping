@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useMapTimelineStore } from '../stores/mapTimelineStore';
+import { useMapTimelineStore } from '../store/mapTimelineStore';
 import { sortLocationsByTime, transformLocationsToEvents, transformToMarkerData, getDateRange } from '../utils/timelineHelpers';
 import { applyLocationFilters } from '../utils/filterHelpers';
 import type { CCTVLocation } from '@/types/cctv.types';

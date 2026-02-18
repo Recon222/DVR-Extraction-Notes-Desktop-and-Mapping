@@ -23,7 +23,7 @@ vi.mock('@/stores/useCaseStore', () => ({
   useCaseStore: vi.fn((selector) => selector({ currentCase: { case_name: 'Test', case_path: '/test' } })),
 }));
 
-vi.mock('../stores/mapTimelineStore', () => ({
+vi.mock('../store/mapTimelineStore', () => ({
   useMapTimelineStore: vi.fn(() => ({
     filters: null,
     filtersOpen: false,
