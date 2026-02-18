@@ -24,7 +24,7 @@ import { useEffect, useRef, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useStreetViewPanorama } from '../../hooks/useStreetViewPanorama';
 import { useKeyboardContext } from '../../hooks/useKeyboardContext';
-import { StreetViewPOVButton } from '@/components/streetview/StreetViewPOVButton';
+import { StreetViewPOVButton } from './StreetViewPOVButton';
 import { GOOGLE_MAPS_CONFIG } from '../../constants/mapConfig';
 import { Z_INDEX } from '@/features/shared/config';
 import { useFullscreen, isFullscreenSupported } from '../../hooks/useFullscreen';

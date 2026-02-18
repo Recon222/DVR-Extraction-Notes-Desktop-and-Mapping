@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, lazy, Suspense, useCallback } from 'react'
 import type { SlideImage, SlideVideo, ZoomRef, Plugin } from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/counter.css';
-import { convertFileSrc } from '@tauri-apps/api';
+import { convertFileSrc } from '@tauri-apps/api/core';
 import { readFileAsBase64, getStreamingMediaUrl, resolveMediaPath } from '../../services/mediaService';
 import { useAppMode } from '@/contexts/AppModeContext';
 import { useMapTimelineStore } from '../../store/mapTimelineStore';
@@ -11,7 +11,7 @@ import { useFullscreen } from '../../hooks/useFullscreen';
 import { DOM_IDS } from '../../constants/domIds';
 import { HOTKEYS } from '../../constants/hotkeys';
 import { Z_INDEX } from '@/features/shared/config';
-import { VIDEO_PLAYBACK } from '@config/mediaConfig';
+import { VIDEO_PLAYBACK } from '../../constants/mediaConfig';
 
 // Lazy load the main lightbox component
 // This reduces initial bundle size by ~100KB and improves load time
